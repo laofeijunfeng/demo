@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.gitchat.math.Lesson1;
+package com.linjunfeng.demo.math.Lesson1;
 
 import java.math.BigInteger;
 

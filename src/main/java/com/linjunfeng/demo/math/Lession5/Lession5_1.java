@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.gitchat.math.Lession5;
+package com.linjunfeng.demo.math.Lession5;
 
 import java.util.ArrayList;
 

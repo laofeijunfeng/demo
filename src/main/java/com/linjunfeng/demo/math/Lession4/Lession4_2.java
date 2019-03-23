@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.gitchat.math.Lession4;
+package com.linjunfeng.demo.math.Lession4;
 
 public class Lession4_2 {
 
