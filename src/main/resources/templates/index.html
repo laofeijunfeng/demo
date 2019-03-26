@@ -7,4 +7,7 @@
 <body>
 <h1 th:text="${message}">Hello World</h1>
 </body>
+
+<div th:include="footer::copyright"></div>
+<div th:replace="footer::copyright"></div>
 </html>
