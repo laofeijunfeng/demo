@@ -1,4 +1,4 @@
-Spring Boot 各种 Demo 联系与测试
+Spring Boot 各种 Demo 练习与测试
 ====
 
 <br/>
@@ -12,3 +12,13 @@ Spring Boot 各种 Demo 联系与测试
 * [java 使用递归解决田忌赛马的选择问题](https://github.com/laofeijunfeng/demo/commit/8f4af5fd054ab7961844934de21ed8303fce01d1)
 * [java 拓展：密码匹配](https://github.com/laofeijunfeng/demo/commit/42858ef2937b3f23531c3e1901d8ac6fa874ae8f)
 * [java 使用递归计算不同的组合方式](https://github.com/laofeijunfeng/demo/commit/ceba4cad2440ca28e66388048025a5b724487aa4)
+
+<br/>
+
+### Spring Boot 框架练习
+
+##### [Thymeleaf 模板引擎的简单使用]
+
+* [模版引入](https://github.com/laofeijunfeng/demo/commit/73823dbed5d3dbeb7d11f87dbbb4faa65d48c6ee)
+* [整体布局](https://github.com/laofeijunfeng/demo/commit/65258796a4a1e5651c53c89832ef752219784cbd)
+* [变量传递](https://github.com/laofeijunfeng/demo/commit/15719570e9a4346e146beeca63f62e754a99e84d)
