@@ -17,7 +17,7 @@ Spring Boot 各种 Demo 练习与测试
 
 ### Spring Boot 框架练习
 
-##### [Thymeleaf 模板引擎的简单使用]
+Thymeleaf 模板引擎的简单使用
 
 * [模版引入](https://github.com/laofeijunfeng/demo/commit/73823dbed5d3dbeb7d11f87dbbb4faa65d48c6ee)
 * [整体布局](https://github.com/laofeijunfeng/demo/commit/65258796a4a1e5651c53c89832ef752219784cbd)
