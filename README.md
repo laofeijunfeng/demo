@@ -3,7 +3,7 @@ Spring Boot 各种 Demo 练习与测试
 
 <br/>
 
-### 一些简单的数学问题练习
+### 一些简单的数学问题练习：
 
 * [java 二进制与十进制的互相转换](https://github.com/laofeijunfeng/demo/commit/681894f2b82071a0b1dd8dcc43f9b61fb8e9ef35)
 * [java 使用二分法求整数的平方根](https://github.com/laofeijunfeng/demo/commit/089f58423e3bbe91b738fdeb0d0bd704c571fb10)
@@ -15,7 +15,7 @@ Spring Boot 各种 Demo 练习与测试
 
 <br/>
 
-### Spring Boot 框架练习
+### Spring Boot 框架练习：
 
 Thymeleaf 模板引擎的简单使用
 
