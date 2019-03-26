@@ -6,8 +6,34 @@
 </head>
 <body>
 <h1 th:text="${message}">Hello World</h1>
-</body>
+
+<h1>常用语法</h1>
+
+<hr/>
+
+<h3>赋值、字符串拼接</h3>
+<p th:text="${username}">laofeijunfeng</p>
+<span th:text="'Welcome to our application, ' + ${username} + ' !'"></span>
+<span th:text="|Welcome to our application, ${username}  !|"></span>
+
+<hr/>
+
+<h3>条件判断 if/unless</h3>
+<a th:if="${flag == 'yes'}" th:href="@{/layout/index}">layout/index</a>
+<a th:unless="${flag != 'no'}" th:href="@{https://linjunfeng.cn}">laofeijunfeng</a>
+
+<hr/>
+
+<h3>for 循环</h3>
+<table>
+    <tr th:each="user,iterStat : ${users}">
+        <td th:text="${user.name}">laofeijunfeng</td>
+        <td th:text="${user.age}">26</td>
+        <td th:text="${iterStat.index}">index</td>
+    </tr>
+</table>
 
 <div th:include="layout/footer::copyright"></div>
 <div th:replace="layout/footer::copyright"></div>
+</body>
 </html>
