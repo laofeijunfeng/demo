@@ -1,6 +1,6 @@
-package com.linjunfeng.demo.math.Lession4;
+package com.linjunfeng.demo.math.Lesson4;
 
-public class Lession4_2 {
+public class Lesson4_2 {
 
     /**
      * 使用函数的递归（嵌套）调用，进行数学归纳法的证明，当前验证的是 2 ^ n - 1
@@ -30,7 +30,7 @@ public class Lession4_2 {
     public static void main(String[] args) {
         int grid = 63;
         Result result = new Result();
-        System.out.println(Lession4_2.prove(grid, result));
+        System.out.println(Lesson4_2.prove(grid, result));
     }
 
     private static class Result {

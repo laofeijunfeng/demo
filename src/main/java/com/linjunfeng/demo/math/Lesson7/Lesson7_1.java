@@ -1,10 +1,10 @@
-package com.linjunfeng.demo.math.Lession7;
+package com.linjunfeng.demo.math.Lesson7;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Lession7_1 {
+public class Lesson7_1 {
 
     // 设置齐王的马跑完所需的时间
     public static HashMap<String, Double> q_hourse_time = new HashMap<String, Double>(){

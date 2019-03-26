@@ -1,9 +1,9 @@
-package com.linjunfeng.demo.math.Lession7;
+package com.linjunfeng.demo.math.Lesson7;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Lession7_2 {
+public class Lesson7_2 {
     public static ArrayList<String> copeOfPassword = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e"));
 
     public static void getPassword(ArrayList<String> code, ArrayList<String> result) {

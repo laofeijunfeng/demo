@@ -1,8 +1,8 @@
-package com.linjunfeng.demo.math.Lession6;
+package com.linjunfeng.demo.math.Lesson6;
 
 import java.util.Arrays;
 
-public class Lession6_1 {
+public class Lesson6_1 {
 
     public static int[] merge_sort(int[] to_sort) {
         if (to_sort == null)

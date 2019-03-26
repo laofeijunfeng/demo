@@ -1,6 +1,6 @@
-package com.linjunfeng.demo.math.Lession3;
+package com.linjunfeng.demo.math.Lesson3;
 
-public class Lession3_2 {
+public class Lesson3_2 {
 
     /**
      * 使用二分法计算大于 1 的整数的平方根

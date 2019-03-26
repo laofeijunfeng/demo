@@ -1,8 +1,8 @@
-package com.linjunfeng.demo.math.Lession5;
+package com.linjunfeng.demo.math.Lesson5;
 
 import java.util.ArrayList;
 
-public class Lession5_1 {
+public class Lesson5_1 {
 
     public static long[] rewards = {1, 2, 5, 10};
 
