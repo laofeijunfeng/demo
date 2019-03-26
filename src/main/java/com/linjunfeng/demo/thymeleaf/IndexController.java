@@ -11,4 +11,9 @@ public class IndexController {
         map.addAttribute("message", "i am a thymeleaf test page");
         return "index";
     }
+
+    @RequestMapping("/layout/index")
+    public String layoutIndex(ModelMap map) {
+        return "layout/index";
+    }
 }
