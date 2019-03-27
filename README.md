@@ -24,3 +24,5 @@ Thymeleaf 模板引擎的简单使用
 * [变量传递](https://github.com/laofeijunfeng/demo/commit/15719570e9a4346e146beeca63f62e754a99e84d)
 
 Mqtt 的基本使用
+* [客户端配置](https://github.com/laofeijunfeng/demo/commit/07e66e1c09c676a05da601cbd3aea3eb9f9217a4)
+* [订阅与发布](https://github.com/laofeijunfeng/demo/commit/2e3b3b46f9861e11d51b805cad631465f78f468c)
