@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class MqttClientConfig {
 
     public static int qos = 1;
-    private static String broker = "tcp://47.94.195.156:1883";
-    private static String userName = "links2all";
-    private static String password = "a5I2bsRsfP1kpgaQ";
+    private static String broker = "tcp://iot.eclipse.org";
+    private static String userName = "admin";
+    private static String password = "admin";
     private static MqttConnectOptions connectOptions;
     private static MqttClient mqttClient;
 
