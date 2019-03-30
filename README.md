@@ -12,6 +12,7 @@ Spring Boot 各种 Demo 练习与测试
 * [java 使用递归解决田忌赛马的选择问题](https://github.com/laofeijunfeng/demo/commit/8f4af5fd054ab7961844934de21ed8303fce01d1)
 * [java 拓展：密码匹配](https://github.com/laofeijunfeng/demo/commit/42858ef2937b3f23531c3e1901d8ac6fa874ae8f)
 * [java 使用递归计算不同的组合方式](https://github.com/laofeijunfeng/demo/commit/ceba4cad2440ca28e66388048025a5b724487aa4)
+* [java 利用树的广度优先搜索查询人际关系](https://github.com/laofeijunfeng/demo/commit/af699e768891916274f0c8a4daa2eadbdbf862db)
 
 <br/>
 
