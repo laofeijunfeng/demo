@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.thread.Demo4;
+package com.linjunfeng.demo.thread.demo4;
 
 public class Demo4_2 extends Thread {
     @Override
