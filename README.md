@@ -70,3 +70,4 @@ Mqtt 的基本使用
 等待/通知机制
 
 * [wait() 与 notify()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/waitAndNotify)
+* [join()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/join)
