@@ -5,7 +5,7 @@ public class Test {
         MyThread myThread = new MyThread();
         myThread.start();
         try {
-            myThread.join();
+            myThread.join(); // 可设定等待时间
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
