@@ -71,3 +71,7 @@ Mqtt 的基本使用
 
 * [wait() 与 notify()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/waitAndNotify)
 * [join()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/join)
+* [类 ThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/join)
+* [类 InheritableThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/inheritableThreadLocal)
+
+Lock
