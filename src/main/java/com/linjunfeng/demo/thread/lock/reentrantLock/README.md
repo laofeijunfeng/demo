@@ -28,4 +28,4 @@ ReentrantLock 相关的方法测试
 * [boolean isHeldByCurrentThread()]() `查询当前线程是否保持此锁`
 * [boolean isLocked()]() `查询此锁定是否由任意线程保持`
 * [void lockInterruptibly()]() `如果当前线程未被中断，则获取该锁，如果已经被中断则出现异常`
-
+* [boolean tryLock()]() `仅在调用时锁定未被另一个线程保持的情况下，才获取该锁定`
