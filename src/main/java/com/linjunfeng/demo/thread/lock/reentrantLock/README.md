@@ -4,11 +4,14 @@
 
 类 ReentrantLock 也可以实现通知功能，但是需要借助于 Condition 对象，Condition 对象相对 wait() 和 notify() 来说更加灵活，可以实现多路复用，也就是一个 Lock 对象里创建多个 Condition 实例。而且可以实现选择性通知。consition.await() 方法调用之前需要调用 lock.lock() 代码获得同步监视器。
 
-* [实现同步：测试1]()
-* [实现同步：测试2]()
+* [实现同步：测试1](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo1)
+* [实现同步：测试2](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo2)
+* [Condition：等待/通知](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo3)
+* [Condition：分组通知](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo4)
+* [生产者/消费者模式：一对一交替打印](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo5)
 
 公平锁与非公平锁：锁 Lock 分为“公平锁”和“非公平锁”，公平锁表示线程获取锁的顺序是按照加锁的顺序来分配的，即FIFO，而非公平锁就是以一种获取锁的抢占机制，是随机获得锁的，这种方式可能造成某些线程一直拿不到锁。
 公平锁：ReentrantLock(true)
 非公平锁：ReentrantLock(false)
 
-* [公平锁与非公平锁]()
+* [公平锁与非公平锁](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo6)
