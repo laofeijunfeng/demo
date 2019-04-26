@@ -76,5 +76,6 @@ Mqtt 的基本使用
 
 Lock
 * [类 ReentrantLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock)
+* [类 ReentrantReadWriteLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantReadWriteLock)
 
 面试题
