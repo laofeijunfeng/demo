@@ -24,9 +24,9 @@ ReentrantLock 相关的方法测试
 * [boolean hasQueuedThread()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo10) `查询指定的线程是否正在等待此锁定`
 * [boolean hasQueuedThreads()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo10) `查询是否有线程正在等待此锁定`
 * [boolean hasWaiters()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo11) `查询是否有线程正在等待与此锁定有关的 condition 条件`
-* [boolean isFair()]() `判断是否是公平锁，默认情况下 ReentrantLock 使用的是非公平锁`
-* [boolean isHeldByCurrentThread()]() `查询当前线程是否保持此锁`
-* [boolean isLocked()]() `查询此锁定是否由任意线程保持`
-* [void lockInterruptibly()]() `如果当前线程未被中断，则获取该锁，如果已经被中断则出现异常`
-* [boolean tryLock()]() `仅在调用时锁定未被另一个线程保持的情况下，才获取该锁定`
-* [boolean tryLock(long timeout, TimeUnit unit)]() `如果锁定在给定等待时间内没有被另一个线程保持，且当前线程未中断，则获取该锁定`
+* [boolean isFair()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo12) `判断是否是公平锁，默认情况下 ReentrantLock 使用的是非公平锁`
+* [boolean isHeldByCurrentThread()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo13) `查询当前线程是否保持此锁`
+* [boolean isLocked()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo14) `查询此锁定是否由任意线程保持`
+* [void lockInterruptibly()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo15) `如果当前线程未被中断，则获取该锁，如果已经被中断则出现异常`
+* [boolean tryLock()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo16) `仅在调用时锁定未被另一个线程保持的情况下，才获取该锁定`
+* [boolean tryLock(long timeout, TimeUnit unit)](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo17) `如果锁定在给定等待时间内没有被另一个线程保持，且当前线程未中断，则获取该锁定`
