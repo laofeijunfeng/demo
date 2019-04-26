@@ -27,3 +27,5 @@ ReentrantLock 相关的方法测试
 * [boolean isFair()]() `判断是否是公平锁，默认情况下 ReentrantLock 使用的是非公平锁`
 * [boolean isHeldByCurrentThread()]() `查询当前线程是否保持此锁`
 * [boolean isLocked()]() `查询此锁定是否由任意线程保持`
+* [void lockInterruptibly()]() `如果当前线程未被中断，则获取该锁，如果已经被中断则出现异常`
+
