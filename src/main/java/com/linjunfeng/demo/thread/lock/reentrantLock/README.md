@@ -10,8 +10,12 @@
 * [Condition：分组通知](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo4)
 * [生产者/消费者模式：一对一交替打印](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo5)
 
-公平锁与非公平锁：锁 Lock 分为“公平锁”和“非公平锁”，公平锁表示线程获取锁的顺序是按照加锁的顺序来分配的，即FIFO，而非公平锁就是以一种获取锁的抢占机制，是随机获得锁的，这种方式可能造成某些线程一直拿不到锁。
-公平锁：ReentrantLock(true)
-非公平锁：ReentrantLock(false)
+公平锁与非公平锁：锁 Lock 分为“公平锁”和“非公平锁”，公平锁表示线程获取锁的顺序是按照加锁的顺序来分配的，即FIFO，而非公平锁就是以一种获取锁的抢占机制，是随机获得锁的，这种方式可能造成某些线程一直拿不到锁。<br />
+公平锁：ReentrantLock(true) <br />非公平锁：ReentrantLock(false)
 
 * [公平锁与非公平锁](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo6)
+
+部分方法
+
+* [getHoldCount()]() `查询当前线程保持此锁定的个数`
+* [getQueueLength()]()
