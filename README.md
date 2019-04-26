@@ -75,3 +75,6 @@ Mqtt 的基本使用
 * [类 InheritableThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/inheritableThreadLocal)
 
 Lock
+* [类 ReentrantLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock)
+
+面试题
