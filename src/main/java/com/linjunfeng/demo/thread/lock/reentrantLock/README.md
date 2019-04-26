@@ -18,4 +18,4 @@
 部分方法
 
 * [getHoldCount()]() `查询当前线程保持此锁定的个数`
-* [getQueueLength()]()
+* [getQueueLength()]() `查询正在等待获取此锁定的线程估计数`
