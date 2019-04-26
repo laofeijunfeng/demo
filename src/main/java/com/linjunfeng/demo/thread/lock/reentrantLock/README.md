@@ -15,8 +15,10 @@
 
 * [公平锁与非公平锁](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo6)
 
-部分方法
+ReentrantLock 相关的方法测试
 
-* [getHoldCount()]() `查询当前线程保持此锁定的个数`
-* [getQueueLength()]() `查询正在等待获取此锁定的线程估计数`
-* [getWaitQueueLength()]() `查询等待与此锁定相关的给定条件 Condition 的线程估计数`
+* [int getHoldCount()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo7) `查询当前线程保持此锁定的个数`
+* [int getQueueLength()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo8) `查询正在等待获取此锁定的线程估计数`
+* [int getWaitQueueLength()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock/demo9) `查询等待与此锁定相关的给定条件 Condition 的线程估计数`
+* [boolean hasQueuedThread()]() `查询指定的线程是否正在等待此锁定`
+* [boolean hasQueuedThreads()]() `查询是否有线程正在等待此锁定`
