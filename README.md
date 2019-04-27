@@ -75,7 +75,16 @@ Mqtt 的基本使用
 * [类 InheritableThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/inheritableThreadLocal)
 
 Lock
+
 * [类 ReentrantLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock)
 * [类 ReentrantReadWriteLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantReadWriteLock)
+
+单例模式与多线程
+
+* [立即加载/“饿汉模式”](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo1)
+* [延迟加载/“懒汉模式”](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo2)
+* [静态内置类实现单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo3)
+* [序列化和反序列化的单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo4)
+* [static代码块实现单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo5)
 
 面试题
