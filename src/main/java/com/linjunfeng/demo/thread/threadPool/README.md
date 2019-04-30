@@ -61,7 +61,7 @@ static final int TERMINATED = 3;
 
 #### 在 Executors 中主要以下几个静态方法
 * [ThreadPoolExecutor()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo1)<br/>
-* [newFixedThreadPool(int nThreads)]()<br/>
+* [newFixedThreadPool(int nThreads)](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo2)<br/>
 `创建指定数目线程的线程池，当提交一个任务时，若线程池中有空闲线程，则立即执行，如果没有就暂时放入一个队列汇总等待执行。`
 * [newSingleThreadExecutor()]()<br/>
 `创建只有一个线程的线程池，若有多余的线程提交，会被保存到一个队列中等待执行，按照先进先出的顺序执行。`
