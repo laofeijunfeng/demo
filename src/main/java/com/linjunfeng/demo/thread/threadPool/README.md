@@ -63,9 +63,9 @@ static final int TERMINATED = 3;
 * [ThreadPoolExecutor()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo1)<br/>
 * [newFixedThreadPool(int nThreads)](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo2)<br/>
 `创建指定数目线程的线程池，当提交一个任务时，若线程池中有空闲线程，则立即执行，如果没有就暂时放入一个队列汇总等待执行。`
-* [newSingleThreadExecutor()]()<br/>
+* [newSingleThreadExecutor()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo3)<br/>
 `创建只有一个线程的线程池，若有多余的线程提交，会被保存到一个队列中等待执行，按照先进先出的顺序执行。`
 * [newSingleThreadScheduledExecutor()]()<br/>
-`创建只有一个线程的线程池，但是返回ScheduleExecutorService类，该类扩展了在给定时间执行任务的功能。`
+`创建只有一个线程的线程池，但是返回 ScheduleExecutorService 类，该类扩展了在给定时间执行任务的功能。`
 * [newScheduledThreadPool(int corePoolSize)]()<br/>
-`该类也返回ScheduleExecutorService类，可以指定线程池的线程数目。`
+`该类也返回 ScheduleExecutorService 类，可以指定线程池的线程数目。`
