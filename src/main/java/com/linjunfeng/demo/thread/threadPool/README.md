@@ -6,7 +6,7 @@ JDK 提供了一套 Executor 框架来更好的控制多线程，其核心就是
 
 AbstractExecutorService 实现了 ExecutorService 接口，ThreadPoolExecutor 扩展了抽象类 AbstractExecutorService，而 Executors 类是线程池的工厂类，里面有多个静态方法创建相应的线程。<br/>
 
-ThreadPoolExecutor 类 <br/>
+#### ThreadPoolExecutor 类 <br/>
 ```
 /**
 * ThreadPoolExecutor 继承了 AbstractExecutorServicem，AbstractExecutorService 是一个抽象类，它实现了 ExecutorService 接口，而 ExecutorService 又是继承了 Executor 接口；
@@ -27,7 +27,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     ...
 }
 ```
-构造器中各个参数的含义：
+#### 构造器中各个参数的含义
 > * corePoolSize：核心池的大小，在创建了线程池后，默认情况下，线程池中并没有任何线程，而是等待有任务到来才创建线程去执行任务，除非调用了 prestartAllCoreThreads() 或者 prestartCoreThread() 方法预创建线程，即在没有任务到来之前就创建 corePoolSize 个线程或者一个线程。默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到 corePoolSize 后，就会把到达的任务放到缓存队列当中；
 > * maximumPoolSize：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；
 > * keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于 corePoolSize 时，keepAliveTime 才会起作用；但是如果调用了 allowCoreThreadTimeOut(boolean) 方法，在线程池中的线程数不大于 corePoolSize 时，keepAliveTime 参数也会起作用，直到线程池中的线程数为0；
@@ -44,7 +44,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
       ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）；
       ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务；
 
-线程池状态
+#### 线程池状态
 > 在ThreadPoolExecutor中定义了一个volatile变量，另外定义了几个static final变量表示线程池的各个状态：
 ```
 volatile int runState;
@@ -59,8 +59,8 @@ static final int TERMINATED = 3;
   如果调用了shutdownNow()方法，则线程池处于STOP状态，此时线程池不能接受新的任务，并且会去尝试终止正在执行的任务；<br/>
   当线程池处于SHUTDOWN或STOP状态，并且所有工作线程已经销毁，任务缓存队列已经清空或执行结束后，线程池被设置为TERMINATED状态。
 
-在 Executors 中主要以下几个静态方法：
-* [ThreadPoolExecutor()]()<br/>
+#### 在 Executors 中主要以下几个静态方法
+* [ThreadPoolExecutor()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool/demo1)<br/>
 * [newFixedThreadPool(int nThreads)]()<br/>
 `创建指定数目线程的线程池，当提交一个任务时，若线程池中有空闲线程，则立即执行，如果没有就暂时放入一个队列汇总等待执行。`
 * [newSingleThreadExecutor()]()<br/>
