@@ -33,7 +33,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 > * keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于 corePoolSize 时，keepAliveTime 才会起作用；但是如果调用了 allowCoreThreadTimeOut(boolean) 方法，在线程池中的线程数不大于 corePoolSize 时，keepAliveTime 参数也会起作用，直到线程池中的线程数为0；
 > * unit：参数keepAliveTime的时间单位；
 > * workQueue：一个阻塞队列，用来存储等待执行的任务；一般来说，这里的阻塞队列有以下几种选择：
->   > ArrayBlockingQueue;<br/>LinkedBlockingQueue;<br/>SynchronousQueue;<br/>
+>   > ArrayBlockingQueue：基于数组的先进先出队列，此队列创建时必须指定大小；<br/>
+      LinkedBlockingQueue：基于链表的先进先出队列，如果创建时没有指定此队列大小，则默认为Integer.MAX_VALUE；<br/>
+      SynchronousQueue：这个队列比较特殊，它不会保存提交的任务，而是将直接新建一个线程来执行新来的任务；<br/>
       ArrayBlockingQueue 和 PriorityBlockingQueue 使用较少，一般使用 LinkedBlockingQueue 和 Synchronous。线程池的排队策略与 BlockingQueue 有关；
 > * threadFactory：线程工厂，主要用来创建线程；
 > * handler：表示当拒绝处理任务时的策略，有以下四种取值：
@@ -42,8 +44,23 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
       ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）；
       ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务；
 
+线程池状态
+> 在ThreadPoolExecutor中定义了一个volatile变量，另外定义了几个static final变量表示线程池的各个状态：
+```
+volatile int runState;
+static final int RUNNING    = 0;
+static final int SHUTDOWN   = 1;
+static final int STOP       = 2;
+static final int TERMINATED = 3;
+```
+> runState表示当前线程池的状态，它是一个volatile变量用来保证线程之间的可见性；<br/>
+  当创建线程池后，初始时，线程池处于RUNNING状态；<br/>
+  如果调用了shutdown()方法，则线程池处于SHUTDOWN状态，此时线程池不能够接受新的任务，它会等待所有任务执行完毕；<br/>
+  如果调用了shutdownNow()方法，则线程池处于STOP状态，此时线程池不能接受新的任务，并且会去尝试终止正在执行的任务；<br/>
+  当线程池处于SHUTDOWN或STOP状态，并且所有工作线程已经销毁，任务缓存队列已经清空或执行结束后，线程池被设置为TERMINATED状态。
 
 在 Executors 中主要以下几个静态方法：
+* [ThreadPoolExecutor()]()<br/>
 * [newFixedThreadPool(int nThreads)]()<br/>
 `创建指定数目线程的线程池，当提交一个任务时，若线程池中有空闲线程，则立即执行，如果没有就暂时放入一个队列汇总等待执行。`
 * [newSingleThreadExecutor()]()<br/>
