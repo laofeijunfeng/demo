@@ -30,14 +30,20 @@ Mqtt 的基本使用
 
 <br/>
 
+### JAVA 基础
+
+#### [流库](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream)
+
+<br/>
+
 ### 多线程
 
-实现方式
+#### 实现方式
 
 * [继承 Thread 类](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/demo1)
 * [实现 Runnable 接口](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/demo2)
 
-停止线程
+#### 停止线程
 
 * [isAlive 方法](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/demo4)
 * [interrupt 标记线程](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo5/Demo5_1.java)
@@ -49,7 +55,7 @@ Mqtt 的基本使用
 * [suspend() 和 resume()](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo6/Demo6_1.java)
 * [yield() 放弃资源](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo6/Demo6_2.java)
 
-线程安全
+#### 线程安全
 
 * [synchronized 与实例变量](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo7/Demo7_1.java)
 * [synchronized 与方法](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo7/Demo7_2.java)
@@ -67,19 +73,19 @@ Mqtt 的基本使用
 * [AtomicInteger 保证原子性操作](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo8/Demo8_10.java)
 * [synchronized 可见性](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/thread/demo8/Demo8_11.java)
 
-等待/通知机制
+#### 等待/通知机制
 
 * [wait() 与 notify()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/waitAndNotify)
 * [join()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/join)
 * [类 ThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/join)
 * [类 InheritableThreadLocal](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/communication/inheritableThreadLocal)
 
-Lock
+#### Lock
 
 * [类 ReentrantLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantLock)
 * [类 ReentrantReadWriteLock](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/lock/reentrantReadWriteLock)
 
-单例模式与多线程
+#### 单例模式与多线程
 
 * [立即加载/“饿汉模式”](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo1)
 * [延迟加载/“懒汉模式”](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo2)
@@ -87,7 +93,6 @@ Lock
 * [序列化和反序列化的单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo4)
 * [static代码块实现单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo5)
 
-[线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
+#### [线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
 
-
-面试题
+#### [面试题]()
