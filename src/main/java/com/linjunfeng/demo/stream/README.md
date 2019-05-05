@@ -24,7 +24,7 @@
         2、流操作不会修改数据源；<br/>
         3、流的操作是尽可能惰性执行的；
 
-* [流的创建]()
+* [流的创建](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo2)
     * Stream.of() : 产生一个元素给定值的流；
     * Stream.empty() : 产生一个空流；
     * Stream.generate() : 产生一个无限流；
@@ -32,4 +32,8 @@
     * collection.stream() : 由 collection 转换为流；
     * ...
     
-    
+* [filter()、map() 和 flatMap()]()
+    * filter() : 产生一个流，元素与某种条件相匹配；
+    * map() : 产生一个流，包含了应用该函数后所产生的所有结果；
+    * flatMap() : 通过将 mapper 应用于当前流中所有元素所产生的结果连接到一起而获得的；
+
