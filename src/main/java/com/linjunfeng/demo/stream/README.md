@@ -2,7 +2,7 @@
 
 流提供了一种让我们可以在比集合更高的概念级别上指定计算的数据视图。通过流，我们可以说明想要完成什么任务，而非说明实现什么任务。将操作的调度留给具体实现去解决。
 
-* [从迭代到流操作]()
+* [从迭代到流操作](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo1)
     > 在处理集合时，我们通常会迭代遍历元素，并且在每个元素上执行操作。
     ```
     List<String> words = Arrays.asList("aaa", "bbb", "ccc", "dd");
