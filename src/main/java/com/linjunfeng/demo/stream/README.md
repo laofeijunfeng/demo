@@ -37,7 +37,12 @@
     * map() : 产生一个流，包含了应用该函数后所产生的所有结果；
     * flatMap() : 通过将 mapper 应用于当前流中所有元素所产生的结果连接到一起而获得的；
 
-* [抽取子流和连接流]()
+* [抽取子流和连接流](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo4)
     * limit() : 产生一个流，其中包含了当前流中最初的 maxSize 个元素；
     * skip() : 产生一个流，包含当前流中除了前 n 个元素之外的所有元素；
     * concat() : 产生一个流，包含作为参数传入的第一个流加上第二个流；
+
+* [其他的流转换]()
+    * distinct() : 产生一个流，包含当前流中所有不同的元素；
+    * sorted() : 产生一个流，包含当前流中所有元素按照顺序排序，可通过参数传入比较条件；
+    * peek() : 产生一个流，它与当前流中的元素相同，在获取其中每个元素时，会传递给 action；
