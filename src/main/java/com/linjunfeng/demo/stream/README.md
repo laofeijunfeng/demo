@@ -47,7 +47,7 @@
     * sorted() : 产生一个流，包含当前流中所有元素按照顺序排序，可通过参数传入比较条件；
     * peek() : 产生一个流，它与当前流中的元素相同，在获取其中每个元素时，会传递给 action；
     
-* [简单约简]()<br/>
+* [简单约简](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo6)<br/>
     `约简是一种终结操作，它们会将约简为可以在程序中使用的非流值。使用 max()、min()、findFirst()、findAny() 如果流为空，则会返回一个空的 Optional 对象`
     * count() : 返回流中元素的个数；
     * max() : 返回流中元素的最大值；
@@ -57,3 +57,13 @@
     * anyMatch()
     * allMatch()
     * noneMatch() : 分别在流中任意元素、所有元素和没有任何元素匹配给定断言时返回 true；
+
+* [Optional 类型]()<br/>
+    `Optional<T> 是一个对象包装器，要么包装类型 T 的对象，要么没有包装任何对象。Optional<T> 被当作一种更安全的方式，用来代替类型 T 的引用，这种引用要么为某个对象，要么为 null。`
+    * orElse() : 产生这个 Optional 的值，为空时产生 other；
+    * orElseGet() : 产生这个 Optional 的值，为空时产生调用 other 的结果；
+    * orElseThrow() : 产生这个 Optional 的值，为空时抛出异常；
+    * ifPresent() : 如果 Optional 不为空则传递给参数；
+    * map() : 产生将该 Optional 的值传递给 mapper 后的结果，为空则产生一个空 Optional；
+    * get() : 产生这个 Optional 的值，为空抛出一个 NoSuchElementException 异常；
+    * flatMap() : 产生将 mapper 应用于当前的 Optional 值所产生的结果，为空则产生一个空 Optional；
