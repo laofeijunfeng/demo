@@ -42,7 +42,18 @@
     * skip() : 产生一个流，包含当前流中除了前 n 个元素之外的所有元素；
     * concat() : 产生一个流，包含作为参数传入的第一个流加上第二个流；
 
-* [其他的流转换]()
+* [其他的流转换](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo5)
     * distinct() : 产生一个流，包含当前流中所有不同的元素；
     * sorted() : 产生一个流，包含当前流中所有元素按照顺序排序，可通过参数传入比较条件；
     * peek() : 产生一个流，它与当前流中的元素相同，在获取其中每个元素时，会传递给 action；
+    
+* [简单约简]()<br/>
+    `约简是一种终结操作，它们会将约简为可以在程序中使用的非流值。使用 max()、min()、findFirst()、findAny() 如果流为空，则会返回一个空的 Optional 对象`
+    * count() : 返回流中元素的个数；
+    * max() : 返回流中元素的最大值；
+    * min() : 返回流中元素的最小值，与 max() 一样，可通过参数传入比较器；
+    * findFirst() : 返回流中第一个元素；
+    * findAny() : 返回流中任意一个元素；
+    * anyMatch()
+    * allMatch()
+    * noneMatch() : 分别在流中任意元素、所有元素和没有任何元素匹配给定断言时返回 true；
