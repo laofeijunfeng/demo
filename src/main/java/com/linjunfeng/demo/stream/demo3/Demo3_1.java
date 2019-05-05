@@ -1,5 +1,7 @@
 package com.linjunfeng.demo.stream.demo3;
 
+import com.linjunfeng.demo.stream.utils.ToolUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,15 +17,8 @@ public class Demo3_1 {
         Stream<String> uppercaseWords = words.stream().map(String::toUpperCase);
         System.out.println("map 的使用结果：" + uppercaseWords.collect(Collectors.joining(",")));
 
-        Stream<Stream<String>> result = words.stream().map(Demo3_1::letters);
-        Stream<String> flatResult = words.stream().flatMap(Demo3_1::letters);
+        Stream<Stream<String>> result = words.stream().map(ToolUtil::letters);
+        Stream<String> flatResult = words.stream().flatMap(ToolUtil::letters);
         System.out.println("flatMap 的使用结果：" + flatResult.collect(Collectors.joining(",")));
-    }
-
-    public static Stream<String> letters(String s) {
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < s.length(); i++)
-            result.add(s.substring(i, i+1));
-        return result.stream();
     }
 }

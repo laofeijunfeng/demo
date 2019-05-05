@@ -32,8 +32,12 @@
     * collection.stream() : 由 collection 转换为流；
     * ...
     
-* [filter()、map() 和 flatMap()]()
+* [filter()、map() 和 flatMap()](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo3)
     * filter() : 产生一个流，元素与某种条件相匹配；
     * map() : 产生一个流，包含了应用该函数后所产生的所有结果；
     * flatMap() : 通过将 mapper 应用于当前流中所有元素所产生的结果连接到一起而获得的；
 
+* [抽取子流和连接流]()
+    * limit() : 产生一个流，其中包含了当前流中最初的 maxSize 个元素；
+    * skip() : 产生一个流，包含当前流中除了前 n 个元素之外的所有元素；
+    * concat() : 产生一个流，包含作为参数传入的第一个流加上第二个流；
