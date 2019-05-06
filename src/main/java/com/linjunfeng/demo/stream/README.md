@@ -58,7 +58,7 @@
     * allMatch()
     * noneMatch() : 分别在流中任意元素、所有元素和没有任何元素匹配给定断言时返回 true；
 
-* [Optional 类型]()<br/>
+* [Optional 类型](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo7)<br/>
     `Optional<T> 是一个对象包装器，要么包装类型 T 的对象，要么没有包装任何对象。Optional<T> 被当作一种更安全的方式，用来代替类型 T 的引用，这种引用要么为某个对象，要么为 null。`
     * orElse() : 产生这个 Optional 的值，为空时产生 other；
     * orElseGet() : 产生这个 Optional 的值，为空时产生调用 other 的结果；
@@ -67,3 +67,9 @@
     * map() : 产生将该 Optional 的值传递给 mapper 后的结果，为空则产生一个空 Optional；
     * get() : 产生这个 Optional 的值，为空抛出一个 NoSuchElementException 异常；
     * flatMap() : 产生将 mapper 应用于当前的 Optional 值所产生的结果，为空则产生一个空 Optional；
+
+* [收集结果]()
+    * iterator() 产生一个用于获取当前流中各个元素的迭代器；
+    * forEach() 在流的每个元素上调用 action；
+    * toArray() 产生一个数组；
+    * collect() 使用给定的收集器来收集当前流中的元素，Collectors 类有用于多种收集器的工厂方法；
