@@ -77,7 +77,10 @@
 * [收集到映射中](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo9)
     * Collectors.toMap() : 第一个参数传入 key，第二个参数传入 value，可使用 Function.identity()；第三个参数可通过提供函数引元来覆盖多个元素 key 冲突的问题；第四个参数可传入构造器，例如传入 TreeMap 来获取 TreeMap；
 
-* [群组与分区]()
+* [群组与分区](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/stream/demo10)
     * groupingBy()
     * groupByConcurrent() : 产生一个收集器，它会产生一个映射表或并发映射表，其键是将 classifier 应用于所有收集到的元素上所产生的结果，而值是由具有相同键的元素构成的一个个列表；
     * partitioningBy() : 产生一个收集器，其键是 true / false ，而值是由满足 / 不满足断言的元素构成的列表；
+
+* [下游收集器]()<br/>
+    `groupingBy 方法会产生一个映射表，它的每个值都是一个列表。如果想要以某种方式来处理这些列表，就需要提供一个“下游收集器”；`
