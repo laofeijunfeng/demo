@@ -7,7 +7,7 @@
 * springboot
     * [Thymeleaf](#Thymeleaf模板引擎的简单使用)
     * [Mqtt](#Mqtt的基本使用)
-* noSql
+* 数据库
     * [redis](#Redis)
 * 其他
     * [一些简单的数学联系](#一些简单的数学问题练习)
@@ -108,7 +108,10 @@
 #### [线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
 
 ### JVM
-
+* [自动内存管理机制](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm#自动内存管理机制)
+* [虚拟机执行子系统]()
+* [程序编译与代码优化]()
+* [高效并发]()
 
 ### 日常测试
 
