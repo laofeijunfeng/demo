@@ -1,3 +1,16 @@
+目录
+====
+* 自动内存管理机制
+    * [一 概述](#概述)
+    * [二 运行时数据区域](#运行时数据区域)
+        * [2.1 程序计数器](#程序计数器)
+        * [2.2 Java 虚拟机栈](#Java-虚拟机栈)
+        * [2.3 本地方法栈](#本地方法栈)
+        * [2.4 Java 堆](#Java-堆)
+        * [2.5 方法区](#方法区)
+        * [2.6 运行时常量池](#运行时常量池)
+        * [2.7 直接内存](#直接内存)
+
 # 自动内存管理机制
 
 ### 概述
@@ -57,4 +70,13 @@ java 虚拟机所管理的内存包含以下几个运行时数据区域：
 <div align="center">  
 <img src="https://raw.githubusercontent.com/laofeijunfeng/demo/master/images/jvm/20190513171215.png" width="600px"/>
 </div>
+—— 图片来源：https://blog.csdn.net/wangbiao007/article/details/78545189
 
+#### 直接内存
+直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致 OutOfMemoryError 异常出现。
+
+JDK1.4 中新加入的 NIO(New Input/Output) 类，引入了一种基于通道（Channel） 与缓存区（Buffer） 的 I/O 方式，它可以直接使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为避免了在 Java 堆和 Native 堆之间来回复制数据。
+
+本机直接内存的分配不会收到 Java 堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。
+
+### hotspot 虚拟机对象探秘
