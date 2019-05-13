@@ -2,5 +2,20 @@ spring:
   thymeleaf:
     cache: false
 
+  redis:
+    host: 127.0.0.1
+    password: 123456
+    timeout: 100000
+    jedis:
+      pool:
+        # 最小空闲连接
+        min-idle: 5
+        # 最大空闲连接
+        max-idle: 20
+        # 最大连接数
+        max-active: 20
+        # 最大阻塞等待时间
+        max-wait: 2
+
 server:
   port: 8080
