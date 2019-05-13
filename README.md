@@ -95,4 +95,16 @@ Mqtt 的基本使用
 
 #### [线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
 
-#### [面试题]()
+### 日常测试
+* [多线程下使用 SimpleDateFormat 问题](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/others/demo1)
+
+### Redis
+
+#### 基础
+`Redis 有 5 种基础数据结构，分别为：string (字符串)、list (列表)、set (集合)、hash (哈希) 和 zset (有序集合)；`
+
+* string (字符串) ： Redis 所有的数据结构都是以唯一的 key 字符串作为名称，然后通过这个唯一 key 值来获取相应的 value 数据。不同类型的数据结构的差异就在于 value 的结构不一样。<br/>Redis 的字符串是动态字符串，是可以修改的字符串，内部结构实现上类似于 Java 的 ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配，当字符串长度小于 1M 时，扩容都是加倍现有的空间，如果超过 1M，扩容时一次只会多扩 1M 的空间。需要注意的是字符串最大长度为 512M。
+* list (列表) ： Redis 的列表相当于 Java 的 LinkedList，注意它是链表而不是数组。这意味着 list 的插入和删除操作非常快，时间复杂度为 O(1)，但是索引定位很慢，时间复杂度为 O(n)。当列表弹出了最后一个元素之后，该数据结构自动被删除，内存被回收。
+* hash (字典) ： Redis 的字典相当于 Java 的 HashMap，它是无序字典。内部实现结构上同 Java 的 HashMap 也是一致的，同样的数组 + 链表二维结构。第一维 hash 的数组位置碰撞时，就会将碰撞的元素使用链表串接起来。不同的是，Redis 的字典的值只能是字符串，另外它们 rehash 的方式不一样，redis 采用了渐进式 rehash 策略。
+* set (集合) : Redis 的集合相当于 Java 的 HashSet，它内部的键值对是无序的唯一的。它的内部实现相当于一个特殊的字典，字典中所有的 value 都是一个值 NULL。当集合中最后一个元素移除之后，数据结构自动删除，内存被回收。
+* zset (有序集合) : Redis 的有序集合类似于 Java 的 SortedSet 和 HashMap 的结合体，不仅保证了内部 value 的唯一性，还给每个 value 赋予一个 score，代表这个 value 的排序权重。内部实现用的是一种叫做「跳跃列表」的数据结构。
