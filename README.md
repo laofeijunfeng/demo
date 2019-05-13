@@ -2,16 +2,16 @@
 ====
 * java
     * [stream](#流库)
-    * [多线程]()
-    * [jvm]()
+    * [多线程](#多线程)
+    * [jvm](#JVM)
 * springboot
-    * [Thymeleaf]()
-    * [Mqtt]()
+    * [Thymeleaf](#Thymeleaf模板引擎的简单使用)
+    * [Mqtt](#Mqtt的基本使用)
 * noSql
-    * [redis]()
+    * [redis](#Redis)
 * 其他
-    * [一些简单的数学联系]()
-    * [日常测试]()
+    * [一些简单的数学联系](#一些简单的数学问题练习)
+    * [日常测试](#日常测试)
 
 <br/>
 
@@ -30,13 +30,13 @@
 
 ### Spring Boot 框架练习：
 
-Thymeleaf 模板引擎的简单使用
+##### Thymeleaf模板引擎的简单使用
 
 * [模版引入](https://github.com/laofeijunfeng/demo/commit/73823dbed5d3dbeb7d11f87dbbb4faa65d48c6ee)
 * [整体布局](https://github.com/laofeijunfeng/demo/commit/65258796a4a1e5651c53c89832ef752219784cbd)
 * [变量传递](https://github.com/laofeijunfeng/demo/commit/15719570e9a4346e146beeca63f62e754a99e84d)
 
-Mqtt 的基本使用
+##### Mqtt的基本使用
 * [客户端配置](https://github.com/laofeijunfeng/demo/commit/07e66e1c09c676a05da601cbd3aea3eb9f9217a4)
 * [订阅与发布](https://github.com/laofeijunfeng/demo/commit/2e3b3b46f9861e11d51b805cad631465f78f468c)
 
@@ -106,6 +106,9 @@ Mqtt 的基本使用
 * [static代码块实现单例模式](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/singleton/demo5)
 
 #### [线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
+
+### JVM
+
 
 ### 日常测试
 
