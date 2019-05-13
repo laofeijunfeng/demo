@@ -1,5 +1,17 @@
-Spring Boot 各种 Demo 练习与测试
+目录
 ====
+* java
+    * [stream](#流库)
+    * [多线程]()
+    * [jvm]()
+* springboot
+    * [Thymeleaf]()
+    * [Mqtt]()
+* noSql
+    * [redis]()
+* 其他
+    * [一些简单的数学联系]()
+    * [日常测试]()
 
 <br/>
 
@@ -96,6 +108,7 @@ Mqtt 的基本使用
 #### [线程池](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/thread/threadPool)
 
 ### 日常测试
+
 * [多线程下使用 SimpleDateFormat 问题](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/others/demo1)
 
 ### Redis
