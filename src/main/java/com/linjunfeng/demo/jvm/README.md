@@ -17,6 +17,12 @@
             * [3.2.3 初始化零值](#初始化零值)
             * [3.2.4 设置对象头](#设置对象头)
             * [3.2.5 执行 init 方法](#执行-init-方法)
+        * [3.2 对象的内存布局](#对象的内存布局)
+        * [3.3 对象的访问定位](#对象的访问定位)
+            * [3.3.1 句柄](#句柄)
+            * [3.3.2 指针](#指针)
+            * [3.3.3 区别](#区别)
+            
 
 # 自动内存管理机制
 
@@ -115,3 +121,36 @@ JDK1.4 中新加入的 NIO(New Input/Output) 类，引入了一种基于通道�
 
 #### 执行 init 方法
 执行 new 指令后会接着执行 init 方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完全产生出来。
+
+### 对象的内存布局
+对象在 HotSpot 虚拟机中存储的布局可以分为 3 块区域：**对象头**、**实例数据**和**对齐填充**。
+
+#### 对象头
+对象头主要包含**运行时数据**和**类型指针**两部分信息。
+<div align="center">
+<img src="https://raw.githubusercontent.com/laofeijunfeng/demo/master/images/jvm/20190514105705.png" width="600px"/>
+</div>
+
+#### 实例数据
+这部分是对象真正存储的有效信息，包括定义的以及从父类继承下来的。这部分的存储顺序会受到虚拟机分配策略参数和字段在 Java 源码中定义顺序的影响。
+
+#### 对齐填充
+对齐填充并不是必然存在的。由于 HotSpot VM 的自动内存管理系统要求对象起始地址必须是 8 字节的整数倍，对齐填充使对象头正好是 8 字节的倍数。
+
+### 对象的访问定位
+Java 程序需要通过栈上的 reference 数据来操作堆上的具体对象。而 reference 类型定位对象的方式主要有**句柄**和**直接指针**两种。
+
+#### 句柄
+<div align="center">
+<img src="https://raw.githubusercontent.com/laofeijunfeng/demo/master/images/jvm/20190514111255.png" width="600px"/>
+</div>
+
+#### 指针
+<div align="center">
+<img src="https://raw.githubusercontent.com/laofeijunfeng/demo/master/images/jvm/20190514111459.png" width="600px"/>
+</div>
+
+#### 区别
+<div align="center">
+<img src="https://raw.githubusercontent.com/laofeijunfeng/demo/master/images/jvm/20190514111954.png" width="600px"/>
+</div>
