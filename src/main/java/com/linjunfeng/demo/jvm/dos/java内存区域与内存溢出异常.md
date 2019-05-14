@@ -1,6 +1,6 @@
 目录
 ====
-* [自动内存管理机制](#自动内存管理机制)
+* [java 内存区域与内存溢出异常](#java-内存区域与内存溢出异常)
     * [一 概述](#概述)
     * [二 运行时数据区域](#运行时数据区域)
         * [2.1 程序计数器](#程序计数器)
@@ -25,9 +25,8 @@
         * [3.4 OutOfMemoryError异常测试]()
             * [3.4.1 java 堆溢出](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/demo1)
             * [3.4.2 java 栈溢出](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/demo2)
-            
 
-# 自动内存管理机制
+# java 内存区域与内存溢出异常
 
 ## 概述
 对于 Java 程序员来说，在虚拟机自动内存管理机制下，不再需要像 C/C++程序开发程序员这样为内一个 new 操作去写对应的 delete/free 操作，不容易出现内存泄漏和内存溢出问题。正是因为 Java 程序员把内存控制权利交给 Java 虚拟机，一旦出现内存泄漏和溢出方面的问题，如果不了解虚拟机是怎样使用内存的，那么排查错误将会是一个非常艰巨的任务。
