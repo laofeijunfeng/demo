@@ -24,6 +24,7 @@
             * [3.3.3 区别](#区别)
         * [3.4 OutOfMemoryError异常测试]()
             * [3.4.1 java 堆溢出](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/demo1)
+            * [3.4.2 java 栈溢出](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/demo2)
             
 
 # 自动内存管理机制
