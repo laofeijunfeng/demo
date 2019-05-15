@@ -110,6 +110,7 @@
 ### JVM
 * 自动内存管理机制
     * [java 内存区域与内存溢出异常](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/dos/java内存区域与内存溢出异常.md)
+    * [垃圾收集器与内存分配策略](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/jvm/dos/垃圾收集器与内存分配策略.md)
 * [虚拟机执行子系统]()
 * [程序编译与代码优化]()
 * [高效并发]()
