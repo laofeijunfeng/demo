@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.mybatis;
+package com.linjunfeng.demo.mybatis.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

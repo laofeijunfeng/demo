@@ -15,7 +15,7 @@
 
 <br/>
 
-### 一些简单的数学问题练习：
+### 一些简单的数学问题练习
 
 * [java 二进制与十进制的互相转换](https://github.com/laofeijunfeng/demo/commit/681894f2b82071a0b1dd8dcc43f9b61fb8e9ef35)
 * [java 使用二分法求整数的平方根](https://github.com/laofeijunfeng/demo/commit/089f58423e3bbe91b738fdeb0d0bd704c571fb10)
@@ -118,6 +118,7 @@
 ### 日常测试
 
 * [多线程下使用 SimpleDateFormat 问题](https://github.com/laofeijunfeng/demo/tree/master/src/main/java/com/linjunfeng/demo/others/demo1)
+* [Mybatis 二级缓存](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/mybatis/dos/二级缓存的优化.md)
 
 ### Redis
 

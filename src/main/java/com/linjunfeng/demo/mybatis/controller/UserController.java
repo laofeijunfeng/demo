@@ -1,7 +1,7 @@
 package com.linjunfeng.demo.mybatis.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.linjunfeng.demo.mybatis.HttpUtil;
+import com.linjunfeng.demo.mybatis.util.HttpUtil;
 import com.linjunfeng.demo.mybatis.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
