@@ -17,6 +17,14 @@ public class UserServiceImpl implements IUserService {
     public JSONObject getUser(JSONObject object) {
         String userId = object.getString("userId");
         User user = userMapper.selectByPrimaryKey(Long.parseLong(userId));
+
+        User u = new User();
+        u.setName("test2");
+        u.setAge(30);
+        u.setTmCreate(System.currentTimeMillis());
+        userMapper.insertSelective(u);
+
+        user = userMapper.selectByPrimaryKey(Long.parseLong(userId));
         JSONObject obj = new JSONObject();
         obj.put("obj", user);
         return obj;
