@@ -1,8 +1,7 @@
-package com.linjunfeng.demo.zookeeper.script.createNode;
+package com.linjunfeng.demo.zookeeper.api.createNode;
 
 import org.apache.zookeeper.*;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 public class ZookeeperCreateApiSyncUsage implements Watcher {

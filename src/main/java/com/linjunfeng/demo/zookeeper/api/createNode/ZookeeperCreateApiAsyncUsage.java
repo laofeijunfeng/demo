@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.zookeeper.script.createNode;
+package com.linjunfeng.demo.zookeeper.api.createNode;
 
 import org.apache.zookeeper.*;
 

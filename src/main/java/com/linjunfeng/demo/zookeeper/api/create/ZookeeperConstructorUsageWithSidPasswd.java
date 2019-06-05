@@ -1,4 +1,4 @@
-package com.linjunfeng.demo.zookeeper.script.create;
+package com.linjunfeng.demo.zookeeper.api.create;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
