@@ -26,7 +26,9 @@ public class ZookeeperCreateApiAsyncUsage implements Watcher {
 
     @Override
     public void process(WatchedEvent watchedEvent) {
-
+        if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+            connectedSemaphore.countDown();
+        }
     }
 
     static class IStringCallBack implements AsyncCallback.StringCallback {
