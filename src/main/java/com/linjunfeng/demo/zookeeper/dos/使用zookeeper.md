@@ -5,9 +5,9 @@
         * [创建节点](#创建节点)
         * [删除节点](#删除节点)
         * [读取数据](#读取数据)
-        * [更新数据]()
-        * [检测节点]()
-        * [权限控制]()
+        * [更新数据](#更新数据)
+        * [检测节点是否存在](#检测节点是否存在)
+        * [权限控制](#权限控制)
 
 # 使用Zookeeper
 
@@ -197,6 +197,8 @@ Create path result: [0, /zk-test-ephemeral-, I am context, real path name: /zk-t
 
 ### 读取数据
 
+getData 借口和 getChildren 借口基本相同，主要的不同点是在注册的 Watcher，zookeeper 支持的数据格式只有 byte[]。
+
 使用同步获取数据：
 ```java
 public class GetDataApiSyncUsage implements Watcher {
@@ -246,3 +248,237 @@ public class GetDataApiSyncUsage implements Watcher {
 20 , 21, 1
 ```
 
+从结果可以看到，第一次输出的是主动调用 getData 借口获取的数据，而第二次则是节点数据更变后，服务端通过 Watcher 事件通知客户端，客户端再调用 getData 获取数据。
+
+而从第二次获取数据可以看出，不管是节点数据变化，还是节点版本变化，都是属于节点数据变化，同样都会触发 NodeDateChange 通知。
+
+使用异步获取节点数据内容：
+```java
+public class GetDataApiSyncUsage implements Watcher {
+    private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
+    private static ZooKeeper zk = null;
+    private static Stat stat = new Stat();
+
+    public static void main(String[] args) throws Exception {
+        String path = "/zk-book2";
+        zk = new ZooKeeper("localhost:2181", 5000, new GetDataApiSyncUsage());
+        connectedSemaphore.await();
+        zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+        System.out.println(new String(zk.getData(path, true, stat)));
+        System.out.println(stat.getCzxid() + ", " + stat.getMzxid() + ", " + stat.getVersion());
+        zk.setData(path, "123".getBytes(), -1);
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+            if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath())
+                connectedSemaphore.countDown();
+            else if (watchedEvent.getType() == Event.EventType.NodeDataChanged) {
+                try {
+                    System.out.println(new String(zk.getData(watchedEvent.getPath(), true, stat)));
+                    System.out.println(stat.getCzxid() + " , " + stat.getMzxid() + ", " + stat.getVersion());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+```
+
+输出结果：
+```jshelllanguage
+0, /zk-book3, 123
+40, 40, 0
+0, /zk-book3, 123
+40, 41, 1
+```
+
+### 更新数据
+
+同步更新数据：
+```java
+public class SetDataApiSyncUsage implements Watcher {
+    private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
+    private static ZooKeeper zk;
+
+    public static void main(String[] args) throws Exception{
+        String path = "/zk-book4";
+        zk = new ZooKeeper("localhost:2181", 5000, new SetDataApiSyncUsage());
+        connectedSemaphore.await();
+        zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+        zk.getData(path, true, null);
+        Stat stat = zk.setData(path, "456".getBytes(), -1);
+        System.out.println(stat.getCzxid() + ", " + stat.getMzxid() + ", " + stat.getVersion());
+
+        Stat stat2 = zk.setData(
+                path,               // 节点路径
+                "456".getBytes(),   // 更新的数据
+                stat.getVersion()); // 更新节点的版本 
+                // 此构造器还有两个参数
+                // cb 注册一个异步会调函数
+                // ctx 用于传递上下文信息的对象
+        System.out.println(stat2.getCzxid() + ", " + stat2.getMzxid() + ", " + stat2.getVersion());
+        try {
+            zk.setData(path, "456".getBytes(), stat.getVersion());
+        } catch (KeeperException e) {
+            System.out.println("Error: " + e.code() + ", " + e.getMessage());
+        }
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+            if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath())
+                connectedSemaphore.countDown();
+        }
+    }
+}
+```
+
+输出结果：
+```jshelllanguage
+44, 45, 1
+44, 46, 2
+Error: BADVERSION, KeeperErrorCode = BadVersion for /zk-book4
+```
+
+由结果可以看出，最后一次更新报了版本错误，在代码中可以看到，第二次更新依旧是使用一样的版本号，所以会发生此错误。
+
+zookeeper 中 setData 的 version 参数是由 CAS 原理衍生出来的。
+
+CAS 的意思是：对于值 V，每次更新前都会比对其值是否是预期值 A，只有符合预期，才会将 V 原子化的更新到值 B。
+
+在 zookeeper 更新数据时，可以传入 version 这个参数，该参数可以对应 CAS 中的"预期值"，表明是对该 version 的更新。如果在更新时，服务器发现该节点的 version 已经被其他客户端更新时，则无法更新，也是因为如此可以有效的避免一些分布式的并发问题。
+
+使用异步更新数据：
+```java
+public class SetDataApiAsyncUsage implements Watcher {
+
+    private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
+    private static ZooKeeper zk;
+
+    public static void main(String[] args) throws Exception {
+        String path = "/zk-book5";
+        zk = new ZooKeeper("localhost:2181", 5000, new SetDataApiAsyncUsage());
+        connectedSemaphore.await();
+        zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+        zk.setData(path, "456".getBytes(), -1, new IStatCallback(), null);
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+            if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath())
+                connectedSemaphore.countDown();
+        }
+    }
+
+    private static class IStatCallback implements AsyncCallback.StatCallback {
+        @Override
+        public void processResult(int i, String s, Object o, Stat stat) {
+            if (i == 0)
+                System.out.println("SUCCESS");
+        }
+    }
+}
+```
+
+输出结果：
+```jshelllanguage
+SUCCESS
+```
+
+### 检测节点是否存在
+
+该接口主要检测指定节点是否存在，返回值是一个 stat 对象。如果在调用时注册 Watcher 的话，还可以对节点进行监听，如果由发生 创建、删除、更新时，则可以收到相对应的通知。
+
+使用同步调用接口：
+```java
+public class ExistApiSyncUsage implements Watcher {
+    private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
+    private static ZooKeeper zk;
+
+    public static void main(String[] args) throws Exception {
+        String path = "/zk-book6";
+        zk = new ZooKeeper("localhost:2181", 5000, new ExistApiSyncUsage());
+        connectedSemaphore.await();
+        zk.exists(path, true);
+        zk.create(path, "".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        zk.setData(path, "123".getBytes(), -1);
+
+        zk.create(path + "/c1", "".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        zk.delete(path + "/c1", -1);
+        zk.delete(path, -1);
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        try {
+            if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+                if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath())
+                    connectedSemaphore.countDown();
+                else if ((Event.EventType.NodeCreated == watchedEvent.getType())) {
+                    System.out.println("Node(" + watchedEvent.getPath() + ")Created");
+                    zk.exists(watchedEvent.getPath(), true);
+                } else if (Event.EventType.NodeDeleted == watchedEvent.getType()) {
+                    System.out.println("Node(" + watchedEvent.getPath() + ")Deleted");
+                    zk.exists(watchedEvent.getPath(), true);
+                } else if (Event.EventType.NodeDataChanged == watchedEvent.getType()) {
+                    System.out.println("Node(" + watchedEvent.getPath() + ")DataChanged");
+                    zk.exists(watchedEvent.getPath(), true);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+输出结果：
+```jshelllanguage
+Node(/zk-book6)Created
+Node(/zk-book6)DataChanged
+Node(/zk-book6)Deleted
+```
+
+在通过 exists 检测是否存在指定节点时，同时注册一个 Watcher。当创建、更新、删除节点时，就可以收到相对应的通知。
+
+### 权限控制
+
+在实际的应用中，搭建一个 zookeeper 集群，统一为若干应用提供服务。在这种情况下，不同的应用之间往往是不会存在共享数据的使用场景，因此需要解决不同应用之间的权限问题。
+
+Zookeeper 提供了 ACL 权限控制机制，通过设置节点的 ACL，如果客户端符合 ACL 控制，则可以操作节点，不符合则不可以。zookeeper 提供多种权限控制模式：world、auth、digest、ip 和 super。下面主要测试 digest 这个模式。
+
+```java
+public class AuthSampleGet {
+    final static String PATH = "/zk-boot-auth_test";
+
+    public static void main(String[] args) throws Exception {
+        ZooKeeper zooKeeper1 = new ZooKeeper("localhost:2181", 5000, null);
+        zooKeeper1.addAuthInfo(
+                "digest",               // 权限控制模式
+                "foo:true".getBytes()   // 具体的权限信息
+                );
+        zooKeeper1.create(PATH, "init".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.EPHEMERAL);
+
+        System.out.println("不添加权限获取：");
+        ZooKeeper zooKeeper2 = new ZooKeeper("localhost:2181", 50000, null);
+        zooKeeper2.getData(PATH, false, null);
+
+        System.out.println("添加了正确权限：");
+        ZooKeeper zooKeeper3 = new ZooKeeper("localhost:2181", 50000, null);
+        zooKeeper3.addAuthInfo("digest", "foo:true".getBytes());
+
+        System.out.println("添加了错误权限：");
+        ZooKeeper zooKeeper4 = new ZooKeeper("localhost:2181", 50000, null);
+        zooKeeper4.addAuthInfo("digest", "foo:false".getBytes());
+    }
+}
+``` 
