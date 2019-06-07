@@ -4,6 +4,9 @@
     * [stream](#流库)
     * [多线程](#多线程)
     * [jvm](#JVM)
+* 框架
+    * [mybatis]()
+    * [zookeeper](#zookeeper)
 * springboot
     * [Thymeleaf](#Thymeleaf模板引擎的简单使用)
     * [Mqtt](#Mqtt的基本使用)
@@ -116,6 +119,9 @@
     * [虚拟机类加载机制](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/jvm/dos/虚拟机类加载机制.md)
 * [程序编译与代码优化]()
 * [高效并发]()
+
+### zookeeper
+* [使用zookeeper](https://github.com/laofeijunfeng/demo/blob/master/src/main/java/com/linjunfeng/demo/zookeeper/dos/使用zookeeper.md)
 
 ### 日常测试
 
