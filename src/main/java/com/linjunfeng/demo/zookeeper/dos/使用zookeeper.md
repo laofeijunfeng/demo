@@ -3,8 +3,8 @@
     * [Java客户端API的使用](#Java客户端API的使用)
         * [创建会话](#创建会话)
         * [创建节点](#创建节点)
-        * [删除节点]()
-        * [读取数据]()
+        * [删除节点](#删除节点)
+        * [读取数据](#读取数据)
         * [更新数据]()
         * [检测节点]()
         * [权限控制]()
@@ -99,6 +99,7 @@ Receive watched event: WatchedEvent state:SyncConnected type:None path:null
 ```
 
 ### 创建节点
+
 创建节点支持同步和异步两种方式，但都不支持递归创建，也就是无法在不存在但父节点下创建自节点，如果节点已存在，则会抛出异常。
 
 使用同步创建一个节点：
@@ -188,5 +189,60 @@ public class ZookeeperCreateApiAsyncUsage implements Watcher {
 Create path result: [0, /zk-test-ephemeral-, I am context, real path name: /zk-test-ephemeral-
 Create path result: [-110, /zk-test-ephemeral-, I am context, real path name: null
 Create path result: [0, /zk-test-ephemeral-, I am context, real path name: /zk-test-ephemeral-0000000004
+```
+
+### 删除节点
+
+删除节点，只允许删除子叶节点，如果节点存在至少一个子叶节点，则无法直接删除，必须先删除所有子叶节点。
+
+### 读取数据
+
+使用同步获取数据：
+```java
+public class GetDataApiSyncUsage implements Watcher {
+    private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
+    private static ZooKeeper zk = null;
+    private static Stat stat = new Stat();
+
+    public static void main(String[] args) throws Exception {
+        String path = "/zk-book2";
+        zk = new ZooKeeper("localhost:2181", 5000, new GetDataApiSyncUsage());
+        connectedSemaphore.await();
+        zk.create(path, "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+        System.out.println(new String(zk.getData(path, true, stat)));
+        System.out.println(stat.getCzxid() + ", " + stat.getMzxid() + ", " + stat.getVersion());
+        zk.setData(path, "123".getBytes(), -1);
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        if (Event.KeeperState.SyncConnected == watchedEvent.getState()) {
+            if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath())
+                connectedSemaphore.countDown();
+            else if (watchedEvent.getType() == Event.EventType.NodeDataChanged) {
+                try {
+                    System.out.println(new String(zk.getData(
+                            watchedEvent.getPath(), // 节点路径
+                            true,                   // 是否注册一个 Watcher，如果为 true，则会使用默认 Watcher
+                            stat                    // 数据信息状态
+                            )));
+                    // 该构造函数还可以在第二个参数增加一个数据变化监视器 Watcher
+                    System.out.println(stat.getCzxid() + " , " + stat.getMzxid() + ", " + stat.getVersion());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+```
+
+输出结果：
+```jshelllanguage
+123
+20, 20, 0
+123
+20 , 21, 1
 ```
 
