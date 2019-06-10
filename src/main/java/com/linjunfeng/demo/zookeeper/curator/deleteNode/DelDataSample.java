@@ -21,7 +21,9 @@ public class DelDataSample {
                 .forPath(path, "init".getBytes());
         Stat stat = new Stat();
         client.getData().storingStatIn(stat).forPath(path);
-        client.delete().deletingChildrenIfNeeded()
-                .withVersion(stat.getVersion()).forPath(path);
+        client.delete().guaranteed()
+                .deletingChildrenIfNeeded()
+                .withVersion(stat.getVersion())
+                .forPath(path);
     }
 }

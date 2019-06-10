@@ -8,6 +8,14 @@
         * [更新数据](#更新数据)
         * [检测节点是否存在](#检测节点是否存在)
         * [权限控制](#权限控制)
+    * [开源客户端](#开源客户端)
+        * [curator](#curator)
+            * [创建会话](#Curator创建会话)
+            * [创建节点](#Curator创建节点)
+            * [删除节点](#Curator删除节点)
+            * [读取节点数据](#Curator读取节点数据)
+            * [更新节点数据](#Curator更新节点数据)
+            * [异步接口](#Curator异步接口)
 
 # 使用Zookeeper
 
@@ -481,4 +489,229 @@ public class AuthSampleGet {
         zooKeeper4.addAuthInfo("digest", "foo:false".getBytes());
     }
 }
-``` 
+```
+
+## 开源客户端
+
+### curator
+
+Curator 解决了很多 Zookeeper 客户端非常底层的细节开发工作，不仅包括断线重连、反复注册 Watcher 和 NodeExistsException 异常等，还对原生的 Zookeeper API 进行封装，提供了一套更加易用易读的 Fluent 风格的 API。
+
+测试实例使用的 maven 版本：
+
+```xml
+<dependency>
+    <groupId>org.apache.curator</groupId>
+    <artifactId>curator-framework</artifactId>
+    <version>2.4.0</version>
+</dependency>
+```
+
+#### Curator创建会话
+
+具体步骤：
+* 使用 CuratorFrameworkFactory 的工厂方法创建客户端；
+* 然后调用 CuratorFramework 的 start() 方法开启动会话；
+
+使用 Curator 创建会话：
+```java
+public class CreateSessionSample {
+    public static void main(String[] args) throws InterruptedException {
+        // 先定义自己的重试机制
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(
+                1000,   // 初次休眠时间
+                3);     // 最大重试次数
+        // 创建会话
+        CuratorFramework client = CuratorFrameworkFactory.newClient(
+                "localhost:2181",  // 服务器列表
+                5000,              // 会话超时事件 
+                3000,              // 连接超时时间
+                retryPolicy        // 重试机制
+                );
+        client.start();
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+}
+```
+
+使用 Fluent 风格的 API 接口创建会话：
+```java
+public class CreateSessionSampleFluent {
+    public static void main(String[] args) throws Exception {
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+        CuratorFramework client = CuratorFrameworkFactory.builder()
+                .connectString("localhost:2181")
+                .sessionTimeoutMs(5000)
+                .retryPolicy(retryPolicy)
+                .namespace("base")  // 定义命名空间，该客户端对节点的操作都是基于该目录下
+                .build();
+        client.start();
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+}
+```
+
+#### Curator创建节点
+
+```java
+public class CreateNodeSample {
+    static String path = "/zk-book/c1";
+    static CuratorFramework client = CuratorFrameworkFactory.builder()
+            .connectString("localhost:2181")
+            .sessionTimeoutMs(5000)
+            .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+            .build();
+
+    public static void main(String[] args) throws Exception {
+        client.start();
+        client.create().creatingParentsIfNeeded()   // 该方法可实现递归创建节点
+                .withMode(CreateMode.EPHEMERAL)     // 设定属性，默认为持久节点
+                .forPath(
+                        path,                       // 节点路径
+                        "init".getBytes()           // 节点内容，默认为空
+                        );
+    }
+}
+```
+
+#### Curator删除节点
+
+```java
+public class DelDataSample {
+    static String path = "/zk-book/c1";
+    static CuratorFramework client = CuratorFrameworkFactory.builder()
+            .connectString("localhost:2181")
+            .sessionTimeoutMs(5000)
+            .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+            .build();
+
+    public static void main(String[] args) throws Exception {
+        client.start();
+        client.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .forPath(path, "init".getBytes());
+        Stat stat = new Stat();
+        client.getData().storingStatIn(stat).forPath(path);
+        client.delete().guaranteed()         // 强制删除节点
+                .deletingChildrenIfNeeded()  // 递归的删除子节点
+                .withVersion(stat.getVersion()).forPath(path);
+    }
+}
+```
+
+guaranteed() 方法可确保在由于网络等问题导致删除失败的情况下，只要客户端还存在，则在后台由重试机制，直到删除成功。
+
+#### Curator读取节点数据
+
+```java
+public class getDataSample {
+    static String path = "/zk-book";
+    static CuratorFramework client = CuratorFrameworkFactory.builder()
+            .connectString("localhost:2181")
+            .sessionTimeoutMs(5000)
+            .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+            .build();
+
+    public static void main(String[] args) throws Exception {
+        client.start();
+        client.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .forPath(path, "init".getBytes());
+        Stat stat = new Stat();
+        System.out.println(new String(client.getData()
+                .storingStatIn(stat)        // 存储节点的状态信息
+                .forPath(path)));
+    }
+}
+```
+
+#### Curator更新节点数据
+
+```java
+public class SetDataSample {
+    static String path = "/zk-book";
+    static CuratorFramework client = CuratorFrameworkFactory.builder()
+            .connectString("localhost:2181")
+            .sessionTimeoutMs(5000)
+            .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+            .build();
+
+    public static void main(String[] args) throws Exception{
+        client.start();
+        client.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .forPath(path, "init".getBytes());
+        Stat stat = new Stat();
+        client.getData().storingStatIn(stat).forPath(path);
+        System.out.println("Success set node for : " + path + ", new version : "
+                + client.setData().withVersion(stat.getVersion()).forPath(path).getVersion());
+        try {
+            client.setData().withVersion(stat.getVersion()).forPath(path);
+        } catch (Exception e) {
+            System.out.println("Fail set node due to + " + e.getMessage());
+        }
+    }
+}
+```
+
+测试输出结果如下：
+```jshelllanguage
+Success set node for : /zk-book, new version : 1
+Fail set node due to + KeeperErrorCode = BadVersion for /zk-book
+```
+
+从结果可以看出，第二次使用过期的版本信息，则会更新失败。
+
+#### Curator异步接口
+
+Curator 引入了 BackgroundCallback 接口来处理异步返回的信息。BackgroundCallback 接口只有一个 processResult 方法，该方法在操作完成后被异步调用。
+
+异步创建节点：
+```java
+public class CreateNodeBackgroundSample {
+    static String path = "/zk-book";
+    static CuratorFramework client = CuratorFrameworkFactory.builder()
+            .connectString("localhost:2181")
+            .sessionTimeoutMs(5000)
+            .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+            .build();
+    static CountDownLatch semaphore = new CountDownLatch(2);
+    static ExecutorService tp = Executors.newFixedThreadPool(2);
+
+    public static void main(String[] args) throws Exception {
+        client.start();
+        System.out.println("Main thread : " + Thread.currentThread().getName());
+
+        // 此处传入自定义的 Executor
+        client.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .inBackground((curatorFramework, curatorEvent) -> {
+                    System.out.println("event[code: " + curatorEvent.getResultCode() + ", type: " + curatorEvent.getType() + "]");
+                    System.out.println("Thread of processResult: " + Thread.currentThread().getName());
+                    semaphore.countDown();
+                }, tp).forPath(path, "init".getBytes());
+
+        // 此处没有传入自定义的 Executor
+        client.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .inBackground((curatorFramework, curatorEvent) -> {
+                    System.out.println("event[code: " + curatorEvent.getResultCode() + ", type: " + curatorEvent.getType() + "]");
+                    System.out.println("Thread of processResult: " + Thread.currentThread().getName());
+                    semaphore.countDown();
+                }).forPath(path, "init".getBytes());
+        semaphore.await();
+        tp.shutdown();
+    }
+}
+```
+
+可以看到输出结果：
+```jshelllanguage
+Main thread : main
+event[code: -110, type: CREATE]
+Thread of processResult: main-EventThread
+event[code: 0, type: CREATE]
+Thread of processResult: pool-3-thread-1
+```
+
+程序使用异步接口 inBackground 来创建节点，第一次返回 0 ，表示成功；第二次返回 -110，表示节点已经存在。 
